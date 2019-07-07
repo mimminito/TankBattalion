@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityTankBattalion.Events;
+using UnityTankBattalion.Scoring;
 
 namespace UnityTankBattalion
 {
@@ -105,7 +106,7 @@ namespace UnityTankBattalion
         {
             // Add points
             mCurrentPoints += pointsToAdd;
-            
+
             // Fire the player points updated event
             FirePlayerPointsUpdatedEvent();
         }
@@ -135,6 +136,9 @@ namespace UnityTankBattalion
         {
             Debug.Log("GameOver!");
             OnGameOver?.Invoke();
+
+            // Update the high score if needed
+            HighScoreManager.Instance.AddHighScore(mCurrentPoints, "Player 1");
         }
 
         /// <summary>

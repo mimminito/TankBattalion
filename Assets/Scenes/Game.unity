@@ -688,6 +688,7 @@ GameObject:
   - component: {fileID: 928984424}
   - component: {fileID: 928984425}
   - component: {fileID: 928984427}
+  - component: {fileID: 928984428}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -900,6 +901,24 @@ MonoBehaviour:
   BaseTrophy: {fileID: 1420722160465050962, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
     type: 3}
   SpawnPoint: {fileID: 796371474}
+--- !u!114 &928984428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928984421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4bd84f12bd47f9b5fc62020d455cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HighScores: []
+  OnHighScoreAdded:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &957694125
 GameObject:
   m_ObjectHideFlags: 0

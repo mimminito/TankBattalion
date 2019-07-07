@@ -45,7 +45,7 @@ namespace UnityTankBattalion
 
         #region Unity Methods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             // Check to make sure we are playing
             if (!Application.isPlaying)

@@ -20,20 +20,34 @@ namespace UnityTankBattalion
 
         #region Private Variables
 
-        // Components
+        /// <summary>
+        /// Our cached transform 
+        /// </summary>
         private Transform mTransform;
 
-        // Tilemaps
+        /// <summary>
+        /// Collidable tilemaps
+        /// </summary>
         private List<Tilemap> mCollidableTilemaps;
 
-        // Movement
+        /// <summary>
+        /// Are we moving
+        /// </summary>
         private bool mIsPerformingMovement;
+
+        /// <summary>
+        /// Our movement direction
+        /// </summary>
         private Vector2 mMovementDirection;
 
-        // Rotation
+        /// <summary>
+        /// Our current rotation
+        /// </summary>
         private float mTankRotation;
 
-        // Animator
+        /// <summary>
+        /// Cached movement animator string
+        /// </summary>
         private static readonly int Movement = Animator.StringToHash("Movement");
 
         #endregion
@@ -42,11 +56,13 @@ namespace UnityTankBattalion
 
         private void Awake()
         {
+            // Cache our transform for efficiency
             mTransform = transform;
         }
 
         private void Start()
         {
+            // Initialise this component
             Init();
         }
 
@@ -63,6 +79,10 @@ namespace UnityTankBattalion
 
         #region Public Variables
 
+        /// <summary>
+        /// Set our input values
+        /// </summary>
+        /// <param name="inputVector"></param>
         public void SetInput(Vector2 inputVector)
         {
             mMovementDirection = inputVector;
@@ -72,11 +92,18 @@ namespace UnityTankBattalion
 
         #region Private Methods
 
+        /// <summary>
+        /// Initialise this component
+        /// </summary>
         private void Init()
         {
+            // Set our collidable tilemaps to what our LevelManager stored
             mCollidableTilemaps = LevelManager.Instance.CollidableTilemaps;
         }
 
+        /// <summary>
+        /// Calculate our movement
+        /// </summary>
         private void CalculateMovement()
         {
             // Check we have valid input
