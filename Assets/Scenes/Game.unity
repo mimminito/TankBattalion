@@ -4137,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c2bcd416970400ba34a8df643adfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8466824076768563718
+--- !u!114 &8466824076768563721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4149,12 +4149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2615469120045a7bf6a208c0d74aabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TheEvent: {fileID: 0}
+  TheEvent: {fileID: 11400000, guid: 910bfef52941146c39e1fd65a3333566, type: 2}
   UnityEventHandler:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 910bfef52941146c39e1fd65a3333566, type: 2}
-        m_MethodName: FireEvent
+      - m_Target: {fileID: 8466824076768563717}
+        m_MethodName: UpdateHighScore
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 8120663119676213668}
   - component: {fileID: 7402535247128473664}
   - component: {fileID: 2390900770602833278}
+  - component: {fileID: 3976990436643383698}
   m_Layer: 11
   m_Name: TankEnemy
   m_TagString: Untagged
@@ -248,8 +249,8 @@ MonoBehaviour:
   TankAnimator: {fileID: 6984146732221958484}
   MovementDuration: 0.25
   MovementSpeed: 1
-  TileCheckOffset: 1.5
-  TankWidthInTiles: 1
+  TileCheckOffset: 0.5
+  TankWidthInTiles: 2
 --- !u!114 &2390900770602833278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +267,18 @@ MonoBehaviour:
     type: 3}
   BarrelEndTransform: {fileID: 8405503277558099167}
   ProjectileSpeed: 10
+--- !u!114 &3976990436643383698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312025590716045049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88254a80e822497c90dfe7c423af601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8913141038855692252
 GameObject:
   m_ObjectHideFlags: 0
