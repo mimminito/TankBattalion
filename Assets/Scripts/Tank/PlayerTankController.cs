@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 namespace UnityTankBattalion
 {
@@ -29,6 +31,12 @@ namespace UnityTankBattalion
 
             // Handle the shooting input
             HandleShootingInput();
+
+            // DEBUG
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GetComponent<Health>().Kill();
+            }
         }
 
         #endregion

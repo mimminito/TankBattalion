@@ -130,6 +130,10 @@ GameObject:
   m_Component:
   - component: {fileID: 244572540}
   - component: {fileID: 244572541}
+  - component: {fileID: 244572544}
+  - component: {fileID: 244572543}
+  - component: {fileID: 244572542}
+  - component: {fileID: 244572545}
   m_Layer: 0
   m_Name: Listeners
   m_TagString: Untagged
@@ -180,6 +184,111 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityTankBattalion.Events.GameObjectEventListener+UnityGameObjectEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &244572542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244572539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a984086b905f4045b1a69f4225e8dcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 35c6eee31ca1c491289567e587011a69, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &244572543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244572539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a984086b905f4045b1a69f4225e8dcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 95c8ba0f6e57d4d20bd067c16ac17ecd, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928984426}
+        m_MethodName: LoseLife
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &244572544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244572539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a984086b905f4045b1a69f4225e8dcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 732e6849f6f604560b14790be4aa4688, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928984425}
+        m_MethodName: OnLevelStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &244572545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244572539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a984086b905f4045b1a69f4225e8dcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 96785dd4701814dfa9589bb13949a2fe, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928984424}
+        m_MethodName: RespawnPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &304978126
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +367,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &385453439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7761818740361787765, guid: b877908935b4743bfb4addf5ceff6b7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8466824076768563715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &385453443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385453439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2615469120045a7bf6a208c0d74aabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 3a440c615e6444d2d9b16d8e005fc082, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 385453444}
+        m_MethodName: SetTextValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &385453444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385453439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9037778e84e304ddb8e2800dac7feb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &465284467
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +557,53 @@ Transform:
   m_Father: {fileID: 957694126}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &844299018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8466824076618661449, guid: b877908935b4743bfb4addf5ceff6b7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8466824076768563715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &844299019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844299018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2615469120045a7bf6a208c0d74aabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 8e4eb6a0765ba4519a2ca41d6fb6e9f1, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 844299020}
+        m_MethodName: UpdatePlayerLifesCounter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &844299020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844299018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89644fb70e3974c53a2f567ea7366213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928984421
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928984422}
   - component: {fileID: 928984423}
+  - component: {fileID: 928984426}
   - component: {fileID: 928984424}
   - component: {fileID: 928984425}
   m_Layer: 0
@@ -475,8 +679,25 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 945963923562605938, guid: 31b500a3989ca4849b600d70cd9af4f7,
     type: 3}
   PlayerSpawnPoint: {fileID: 465284468}
+  RespawnDelay: 2
   CollidableTilemaps:
   - {fileID: 1719917583}
+  OnLevelStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 732e6849f6f604560b14790be4aa4688, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &928984425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,8 +716,85 @@ MonoBehaviour:
   - {fileID: 1652040452}
   - {fileID: 774482526}
   InitialSpawnDelay: 3
-  SpawnDelay: 3
-  MaxEnemyTanks: 5
+  DelayBetweenSpawns: 3
+  MaxEnemyTanks: 10
+  OnEnemyTankCountUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 3a440c615e6444d2d9b16d8e005fc082, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &928984426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928984421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7bdc5c5d974fbe8cb0e5cd36b647d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingLives: 3
+  OnPlayerLivesUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8e4eb6a0765ba4519a2ca41d6fb6e9f1, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnRespawnPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 96785dd4701814dfa9589bb13949a2fe, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 35c6eee31ca1c491289567e587011a69, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &957694125
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3698c86c57a4b2a8180d68e34053b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestructibleTileStartingHealth: 30
 --- !u!224 &1791534747 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4218617603917611863, guid: 731bea08678604b7484405436c06daa9,
@@ -3721,6 +4020,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.9647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761818740361787765, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466824074934820617, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466824075953375351, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466824076385182887, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b877908935b4743bfb4addf5ceff6b7e, type: 3}

@@ -11,20 +11,24 @@ namespace UnityTankBattalion.Events
         /// <summary>
         /// Our listeners for this event
         /// </summary>
-        public List<GameObjectEventListener> GameObjectListeners;
+        public List<GameObjectEventListener> GameObjectEventListeners;
 
         #endregion
 
         #region Public Methods
 
+        /// <summary>
+        /// Fires the event, passing through a GameObject
+        /// </summary>
+        /// <param name="go"></param>
         public void FireEvent(GameObject go)
         {
             // Loop through all listeners and tell them this event has been fired
-            for (int i = 0; i < GameObjectListeners.Count; i++)
+            for (int i = 0; i < GameObjectEventListeners.Count; i++)
             {
-                if (GameObjectListeners[i] != null)
+                if (GameObjectEventListeners[i] != null)
                 {
-                    GameObjectListeners[i].OnEventFired(go);
+                    GameObjectEventListeners[i].OnEventFired(go);
                 }
             }
         }
@@ -35,7 +39,7 @@ namespace UnityTankBattalion.Events
         /// <param name="listener"></param>
         public void AddListener(GameObjectEventListener listener)
         {
-            GameObjectListeners.Add(listener);
+            GameObjectEventListeners.Add(listener);
         }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace UnityTankBattalion.Events
         /// <param name="listener"></param>
         public void RemoveListener(GameObjectEventListener listener)
         {
-            GameObjectListeners.Remove(listener);
+            GameObjectEventListeners.Remove(listener);
         }
 
         #endregion
