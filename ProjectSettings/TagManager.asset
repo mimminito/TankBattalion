@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Player
+  - Terrain
+  - Enemies
+  - PlayerProjectiles
+  - EnemyProjectiles
   - 
   - 
   - 
