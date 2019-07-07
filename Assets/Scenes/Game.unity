@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 244572543}
   - component: {fileID: 244572542}
   - component: {fileID: 244572545}
+  - component: {fileID: 244572546}
   m_Layer: 0
   m_Name: Listeners
   m_TagString: Untagged
@@ -289,6 +290,35 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &244572546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244572539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2615469120045a7bf6a208c0d74aabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 93f717903ecc3449f8da7a5c431fd335, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928984426}
+        m_MethodName: AddPoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &304978126
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +593,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8466824076768563715}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &844299019
+--- !u!114 &844299020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844299018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89644fb70e3974c53a2f567ea7366213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &844299023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -592,18 +634,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &844299020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844299018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89644fb70e3974c53a2f567ea7366213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &928984421
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +793,22 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnPlayerPointsUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 910bfef52941146c39e1fd65a3333566, type: 2}
+        m_MethodName: FireEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnRespawnPlayer:
     m_PersistentCalls:
       m_Calls:
@@ -828,6 +874,53 @@ Transform:
   m_Father: {fileID: 362845718}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1244613677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8466824076468891692, guid: b877908935b4743bfb4addf5ceff6b7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8466824076768563715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1244613678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244613677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9037778e84e304ddb8e2800dac7feb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1244613679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244613677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2615469120045a7bf6a208c0d74aabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheEvent: {fileID: 11400000, guid: 910bfef52941146c39e1fd65a3333566, type: 2}
+  UnityEventHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1244613678}
+        m_MethodName: SetTextValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1465758292
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,6 +4113,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.9647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466824075152159149, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466824076468891692, guid: b877908935b4743bfb4addf5ceff6b7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7761818740361787765, guid: b877908935b4743bfb4addf5ceff6b7e,
         type: 3}

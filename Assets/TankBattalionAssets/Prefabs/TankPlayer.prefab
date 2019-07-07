@@ -113,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.6, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &9061066855865063396
 MonoBehaviour:
@@ -130,6 +130,7 @@ MonoBehaviour:
   MaxHealth: 100
   DeathDelay: 1.5
   DeathDisableCollisions: 1
+  PointsWhenKilled: 1000
   ObjectAnimator: {fileID: 3529273032136478765}
   DeathAnimTrigger: Explode
   OnKilled:
@@ -148,6 +149,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnGivePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &345259285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,22 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291ffb712cb640339f370290e1080c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlayerKilled:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 95c8ba0f6e57d4d20bd067c16ac17ecd, type: 2}
-        m_MethodName: FireEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &4899283311497515822
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,11 +13,15 @@ namespace UnityTankBattalion
         /// </summary>
         [Header("Player Lives")] public int StartingLives = 3;
 
-
         /// <summary>
         /// Fired when the players lives have been updated
         /// </summary>
         [Header("Unity Events")] public IntEventListener.UnityIntEvent OnPlayerLivesUpdated;
+
+        /// <summary>
+        /// Fired when the players points are updated
+        /// </summary>
+        public IntEventListener.UnityIntEvent OnPlayerPointsUpdated;
 
         /// <summary>
         /// Called when the player needs to respawn as they have lives left
@@ -37,6 +41,11 @@ namespace UnityTankBattalion
         /// The current number of lives the player has
         /// </summary>
         private int mCurrentLives;
+
+        /// <summary>
+        /// The current points the player has
+        /// </summary>
+        private int mCurrentPoints;
 
         #endregion
 
@@ -88,6 +97,19 @@ namespace UnityTankBattalion
             FirePlayerLivesUpdatedEvent();
         }
 
+        /// <summary>
+        /// Adds points to the players point count
+        /// </summary>
+        /// <param name="pointsToAdd"></param>
+        public void AddPoints(int pointsToAdd)
+        {
+            // Add points
+            mCurrentPoints += pointsToAdd;
+            
+            // Fire the player points updated event
+            FirePlayerPointsUpdatedEvent();
+        }
+
         #endregion
 
         #region Private Methods
@@ -99,6 +121,11 @@ namespace UnityTankBattalion
         {
             // Set the players current number of lives            
             mCurrentLives = StartingLives;
+            FirePlayerLivesUpdatedEvent();
+
+            // Set the players starting points
+            mCurrentPoints = 0;
+            FirePlayerPointsUpdatedEvent();
         }
 
         /// <summary>
@@ -115,8 +142,17 @@ namespace UnityTankBattalion
         /// </summary>
         private void FirePlayerLivesUpdatedEvent()
         {
-            // Fire an event that we have lost a life
+            // Fire an event that we have updated our lives count
             OnPlayerLivesUpdated?.Invoke(mCurrentLives);
+        }
+
+        /// <summary>
+        /// Fires the player points updated event
+        /// </summary>
+        private void FirePlayerPointsUpdatedEvent()
+        {
+            // Fire an event that the players points have been updated
+            OnPlayerPointsUpdated?.Invoke(mCurrentPoints);
         }
 
         #endregion
