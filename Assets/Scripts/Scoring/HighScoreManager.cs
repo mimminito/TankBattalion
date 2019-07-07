@@ -32,6 +32,31 @@ namespace UnityTankBattalion.Scoring
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the current high score
+        /// </summary>
+        public int CurrentHighScore
+        {
+            get
+            {
+                int currentHighScore = 0;
+
+                for (int i = 0; i < HighScores.Count; i++)
+                {
+                    if (HighScores[i].Score > currentHighScore)
+                    {
+                        currentHighScore = HighScores[i].Score;
+                    }
+                }
+
+                return currentHighScore;
+            }
+        }
+
+        #endregion
+
         #region Private Variables
 
         /// <summary>
@@ -51,20 +76,6 @@ namespace UnityTankBattalion.Scoring
             DeserializeHighScores();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                AddHighScore(Random.Range(100, 10000), "Adam");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                HighScores.Clear();
-                SerializeHighScores();
-            }
-        }
-
         #endregion
 
         #region Public Methods
@@ -74,7 +85,7 @@ namespace UnityTankBattalion.Scoring
         /// </summary>
         /// <param name="score"></param>
         /// <param name="playerName"></param>
-        public void AddHighScore(int score, string playerName)
+        public void AddHighScore(int score, string playerName = "Player 1")
         {
             // Check to see if this is a new high score
             if (!IsNewHighScore(score))
@@ -95,7 +106,7 @@ namespace UnityTankBattalion.Scoring
             // Persist the high scores
             SerializeHighScores();
         }
-        
+
         /// <summary>
         /// Checks to see if the score is a new high score
         /// </summary>

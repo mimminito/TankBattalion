@@ -58,6 +58,13 @@ namespace UnityTankBattalion
             Init();
         }
 
+        private void Start()
+        {
+            // Update our lives and points
+            FirePlayerLivesUpdatedEvent();
+            FirePlayerPointsUpdatedEvent();
+        }
+
         #endregion
 
         #region Public Methods
@@ -122,11 +129,9 @@ namespace UnityTankBattalion
         {
             // Set the players current number of lives            
             mCurrentLives = StartingLives;
-            FirePlayerLivesUpdatedEvent();
 
             // Set the players starting points
             mCurrentPoints = 0;
-            FirePlayerPointsUpdatedEvent();
         }
 
         /// <summary>
@@ -138,7 +143,7 @@ namespace UnityTankBattalion
             OnGameOver?.Invoke();
 
             // Update the high score if needed
-            HighScoreManager.Instance.AddHighScore(mCurrentPoints, "Player 1");
+            HighScoreManager.Instance.AddHighScore(mCurrentPoints);
         }
 
         /// <summary>
