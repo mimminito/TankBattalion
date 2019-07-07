@@ -259,6 +259,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 928984427}
+        m_MethodName: OnLevelStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &244572545
@@ -391,7 +402,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 304978128}
-  - {fileID: 1907628954}
   - {fileID: 1791534747}
   - {fileID: 957694126}
   m_Father: {fileID: 0}
@@ -587,6 +597,36 @@ Transform:
   m_Father: {fileID: 957694126}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &796371473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796371474}
+  m_Layer: 0
+  m_Name: TrophySpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796371474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796371473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 957694126}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844299018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8466824076618661449, guid: b877908935b4743bfb4addf5ceff6b7e,
@@ -647,6 +687,7 @@ GameObject:
   - component: {fileID: 928984426}
   - component: {fileID: 928984424}
   - component: {fileID: 928984425}
+  - component: {fileID: 928984427}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -694,6 +735,9 @@ MonoBehaviour:
   - PoolItem: {fileID: 5312025590716045049, guid: 2c0c8f15f812641bc8312f6068d4b8ac,
       type: 3}
     PreloadQuantity: 10
+  - PoolItem: {fileID: 1420722160465050962, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
+      type: 3}
+    PreloadQuantity: 1
 --- !u!114 &928984424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +885,21 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &928984427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928984421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3751f15701055434d952f3cf4070bb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseTrophy: {fileID: 1420722160465050962, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
+    type: 3}
+  SpawnPoint: {fileID: 796371474}
 --- !u!1 &957694125
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,8 +930,9 @@ Transform:
   - {fileID: 465284468}
   - {fileID: 1652040452}
   - {fileID: 774482526}
+  - {fileID: 796371474}
   m_Father: {fileID: 362845718}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244613677 stripped
 GameObject:
@@ -880,18 +940,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8466824076768563715}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1244613678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244613677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9037778e84e304ddb8e2800dac7feb2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1244613679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,7 +956,7 @@ MonoBehaviour:
   UnityEventHandler:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1244613678}
+      - m_Target: {fileID: 1244613681}
         m_MethodName: SetTextValue
         m_Mode: 0
         m_Arguments:
@@ -921,6 +969,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &1244613681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244613677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9037778e84e304ddb8e2800dac7feb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1465758292
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,12 +1047,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1609123095 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1420722162038948433}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1652040451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,106 +3662,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4218617603786404189}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1907628953
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1907628954}
-  m_Layer: 0
-  m_Name: Props
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1907628954
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907628953}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1609123095}
-  m_Father: {fileID: 362845718}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1420722162038948433
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1907628954}
-    m_Modifications:
-    - target: {fileID: 1420722160465050962, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_Name
-      value: Base-Trophy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420722160465050964, guid: 73e45ed96d1ca444daaf696a29fdf4bb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 73e45ed96d1ca444daaf696a29fdf4bb, type: 3}
 --- !u!1001 &4218617603786404189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3763,7 +3717,7 @@ PrefabInstance:
     - target: {fileID: 4218617603917611863, guid: 731bea08678604b7484405436c06daa9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4218617603917611863, guid: 731bea08678604b7484405436c06daa9,
         type: 3}
