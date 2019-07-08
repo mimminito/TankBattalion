@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 3919873374448492261}
   - component: {fileID: 5147950669195567877}
   - component: {fileID: 5279252789640001290}
+  - component: {fileID: 9007127689357670566}
   m_Layer: 5
   m_Name: Scoreboard-Entry
   m_TagString: Untagged
@@ -301,6 +302,23 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+--- !u!114 &9007127689357670566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556221814672407442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea52ff9a838142b69908cef09bec4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionText: {fileID: 8371670821959869905}
+  ScoreText: {fileID: 1346218999}
+  PlayerNameText: {fileID: 606942957}
 --- !u!1 &3979558021722198537
 GameObject:
   m_ObjectHideFlags: 0

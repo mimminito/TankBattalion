@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 namespace UnityTankBattalion.Scoring
 {
@@ -129,6 +129,18 @@ namespace UnityTankBattalion.Scoring
             return result;
         }
 
+        /// <summary>
+        /// Clears the high scores and persists the change
+        /// </summary>
+        public void ClearHighScores()
+        {
+            // Clear the high scores
+            HighScores.Clear();
+
+            // Persist the change
+            SerializeHighScores();
+        }
+
         #endregion
 
         #region Private Methods
@@ -161,6 +173,34 @@ namespace UnityTankBattalion.Scoring
 
             HighScoresContainer container = JsonUtility.FromJson<HighScoresContainer>(json);
             HighScores = container.HighScores;
+        }
+
+        #endregion
+
+        #region Editor Class
+
+        [CustomEditor(typeof(HighScoreManager))]
+        public class HighScoreManagerInspector : Editor
+        {
+            #region Private Methods
+
+            public override void OnInspectorGUI()
+            {
+                base.OnInspectorGUI();
+
+                EditorGUILayout.Space();
+
+                if (GUILayout.Button("Clear High Scores"))
+                {
+                    HighScoreManager manager = (HighScoreManager) target;
+                    if (manager)
+                    {
+                        manager.ClearHighScores();
+                    }
+                }
+            }
+
+            #endregion
         }
 
         #endregion
