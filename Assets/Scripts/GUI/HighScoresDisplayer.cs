@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityTankBattalion.Scoring;
 
 namespace UnityTankBattalion
@@ -11,12 +12,12 @@ namespace UnityTankBattalion
         /// Container under which all high scores will be displayed
         /// </summary>
         [Header("Layouts")] public RectTransform HighScoresLayoutContainer;
-        
+
         /// <summary>
         /// ScrollView for the high scores
         /// </summary>
         public GameObject HighScoresScrollView;
-        
+
         /// <summary>
         /// Layout shown when there are no high scores
         /// </summary>
@@ -33,6 +34,11 @@ namespace UnityTankBattalion
         /// </summary>
         public GameObject ScorePrefab;
 
+        /// <summary>
+        /// Scene to load on back pressed
+        /// </summary>
+        [Header("Back Control")] public string SceneToLoadOnBack = "MainMenu";
+
         #endregion
 
         #region Unity Methods
@@ -46,9 +52,25 @@ namespace UnityTankBattalion
             DisplayHighScores();
         }
 
+        private void Update()
+        {
+            HandleBackButton();
+        }
+
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Handles the back button actions via keyboard input
+        /// </summary>
+        private void HandleBackButton()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
 
         /// <summary>
         /// Displays the high scores in a list

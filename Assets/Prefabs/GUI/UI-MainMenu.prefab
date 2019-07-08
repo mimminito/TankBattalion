@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 6431107443660808315}
   - component: {fileID: 6431107443660808314}
   - component: {fileID: 6431107443660808261}
+  - component: {fileID: 6785560042013945950}
   m_Layer: 5
   m_Name: View Leadeboard
   m_TagString: Untagged
@@ -224,6 +225,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6785560042013945950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431107443660808263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed3d04da0bf64925a29370d0abd3ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneToLoad: Scoreboard
 --- !u!1 &6431107443733905772
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +639,7 @@ GameObject:
   - component: {fileID: 6431107444456634127}
   - component: {fileID: 6431107444456634126}
   - component: {fileID: 6431107444456634121}
+  - component: {fileID: 6072554783800674057}
   m_Layer: 5
   m_Name: Start Game
   m_TagString: Untagged
@@ -734,6 +749,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6072554783800674057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431107444456634123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed3d04da0bf64925a29370d0abd3ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneToLoad: Game
 --- !u!1 &6431107444658682386
 GameObject:
   m_ObjectHideFlags: 0
