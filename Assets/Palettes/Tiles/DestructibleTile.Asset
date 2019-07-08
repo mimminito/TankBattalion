@@ -34,4 +34,5 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  StartingHealth: 20
+  ExplosionPrefab: {fileID: 4989520908023041247, guid: f0bdb9a9f82184342ae41b65326ec282,
+    type: 3}

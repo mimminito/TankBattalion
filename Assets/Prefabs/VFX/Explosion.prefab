@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7738938478625932071}
   - component: {fileID: 1884396520830869705}
   - component: {fileID: 215014044515961249}
+  - component: {fileID: 7781311853268456027}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -66,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1153133303
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5360c4dece8f743319fa9fd35d5d8b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,3 +100,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7781311853268456027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4989520908023041247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c0ce3f384364c98b3ac434d7f40866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anim: {fileID: 215014044515961249}
+  ExplosionAnimTrigger: Explode
+  DelayBeforeDespawn: 1.5

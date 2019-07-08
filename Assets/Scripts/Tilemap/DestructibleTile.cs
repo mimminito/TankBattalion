@@ -8,6 +8,15 @@ namespace UnityTankBattalion
 {
     public class DestructibleTile : Tile
     {
+        #region Public Variables
+
+        /// <summary>
+        /// Prefab to spawn when this tile is destroyed
+        /// </summary>
+        public GameObject ExplosionPrefab;
+
+        #endregion
+
         #region Private Variables
 
         /// <summary>
@@ -69,7 +78,30 @@ namespace UnityTankBattalion
         /// </summary>
         public void Kill()
         {
+            // Set this tile to null so it is hidden
             mTilemap.SetTile(mTilePos, null);
+
+            // Spawn the effect
+            SpawnExplosionEffect();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Spawns an explosion effect
+        /// </summary>
+        private void SpawnExplosionEffect()
+        {
+            // Check we have an explosion prefab to spawn
+            if (ExplosionPrefab == null)
+            {
+                return;
+            }
+
+            // Spawn at the center of the tile
+            Pooling.GetFromPool(ExplosionPrefab, mTilemap.GetCellCenterWorld(mTilePos), Quaternion.identity);
         }
 
         #endregion
