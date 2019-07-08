@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 7402535247128473664}
   - component: {fileID: 2390900770602833278}
   - component: {fileID: 3976990436643383698}
+  - component: {fileID: 6858811052972667204}
   m_Layer: 11
   m_Name: TankEnemy
   m_TagString: Untagged
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cbce4e059074366b5c9de060963bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 10
   DeathDelay: 1.5
   DeathDisableCollisions: 1
   PointsWhenKilled: 1000
@@ -279,6 +280,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88254a80e822497c90dfe7c423af601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinFrequency: 3
+  MaxFrequency: 5
+--- !u!114 &6858811052972667204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312025590716045049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016e27a4f2aa54e6abe366030ed4cdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinFrequency: 3
+  MaxFrequency: 5
 --- !u!1 &8913141038855692252
 GameObject:
   m_ObjectHideFlags: 0

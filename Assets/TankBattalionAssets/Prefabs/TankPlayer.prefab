@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cbce4e059074366b5c9de060963bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 10
   DeathDelay: 1.5
   DeathDisableCollisions: 1
   PointsWhenKilled: 1000

@@ -790,7 +790,7 @@ MonoBehaviour:
   SpawnPoints:
   - {fileID: 1652040452}
   - {fileID: 774482526}
-  InitialSpawnDelay: 3
+  InitialSpawnDelay: 1
   DelayBetweenSpawns: 3
   MaxEnemyTanks: 10
   OnEnemyTankCountUpdated:
