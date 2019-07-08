@@ -40,6 +40,11 @@ namespace UnityTankBattalion
         /// </summary>
         [Header("Unity Events")] public IntEventListener.UnityIntEvent OnEnemyTankCountUpdated;
 
+        /// <summary>
+        /// Fired when all enemy tanks have been killed
+        /// </summary>
+        public UnityEvent OnAllEnemyTanksKilled;
+
         #endregion
 
         #region Private Variables
@@ -57,12 +62,17 @@ namespace UnityTankBattalion
         /// <summary>
         /// A list of all spawned enemy tanks
         /// </summary>
-        private readonly List<GameObject> mSpawnedEnemyTanks = new List<GameObject>();
+        [SerializeField] private List<GameObject> mSpawnedEnemyTanks = new List<GameObject>();
+
+        /// <summary>
+        /// This is an internal counter for how many tanks we have spawned.
+        /// </summary>
+        private int mEnemyTanksSpawnedCount;
 
         /// <summary>
         /// This is a count of how many enemy tanks there are left to destroy. This is not the same as how many are active on screen.
         /// </summary>
-        private int mEnemyTanksCount;
+        private int mEnemyTanksLeftCount;
 
         #endregion
 
@@ -83,6 +93,9 @@ namespace UnityTankBattalion
         /// </summary>
         public void OnLevelStarted()
         {
+            // Initialise again
+            Init();
+
             // Start spawning enemy tanks
             StartSpawningEnemies();
         }
@@ -97,10 +110,19 @@ namespace UnityTankBattalion
             mSpawnedEnemyTanks.Remove(go);
 
             // Update our count
-            mEnemyTanksCount--;
+            mEnemyTanksLeftCount--;
+
+            // Ensure we do not go below 0
+            mEnemyTanksLeftCount = Mathf.Max(mEnemyTanksLeftCount, 0);
 
             // Fire an event with the updated enemy tank count
             FireEnemyTankCountUpdatedEvent();
+
+            if (mEnemyTanksLeftCount <= 0)
+            {
+                // Stop spawning enemies
+                StopSpawningEnemies();
+            }
         }
 
         #endregion
@@ -113,8 +135,11 @@ namespace UnityTankBattalion
         private void Init()
         {
             // Set our tank count
-            mEnemyTanksCount = MaxEnemyTanks;
+            mEnemyTanksLeftCount = MaxEnemyTanks;
             FireEnemyTankCountUpdatedEvent();
+
+            // Set our spawn count
+            mEnemyTanksSpawnedCount = 0;
         }
 
         /// <summary>
@@ -146,7 +171,7 @@ namespace UnityTankBattalion
                 yield return new WaitForSeconds(DelayBetweenSpawns);
 
                 // Check if we have reached our max limit of tanks
-                if (mSpawnedEnemyTanks.Count < MaxEnemyTanks)
+                if (mEnemyTanksSpawnedCount < MaxEnemyTanks)
                 {
                     // Spawn an enemy tank
                     SpawnSingleEnemy();
@@ -167,6 +192,25 @@ namespace UnityTankBattalion
 
             // Add the enemy into the list
             mSpawnedEnemyTanks.Add(enemyTank);
+
+            // Update our internal counter
+            mEnemyTanksSpawnedCount++;
+        }
+
+        /// <summary>
+        /// Stops enemies spawning
+        /// </summary>
+        private void StopSpawningEnemies()
+        {
+            // Set our flag to stop spawning enemies
+            mCanSpawnEnemies = false;
+
+            // Stop the routine
+            StopCoroutine(mSpawnEnemiesRoutine);
+            mSpawnEnemiesRoutine = null;
+
+            // Fire an event that all have died
+            FireAllTanksKilledEvent();
         }
 
         /// <summary>
@@ -174,7 +218,15 @@ namespace UnityTankBattalion
         /// </summary>
         private void FireEnemyTankCountUpdatedEvent()
         {
-            OnEnemyTankCountUpdated?.Invoke(mEnemyTanksCount);
+            OnEnemyTankCountUpdated?.Invoke(mEnemyTanksLeftCount);
+        }
+
+        /// <summary>
+        /// Fires an event that all enemy tanks have been killed
+        /// </summary>
+        private void FireAllTanksKilledEvent()
+        {
+            OnAllEnemyTanksKilled?.Invoke();
         }
 
         #endregion

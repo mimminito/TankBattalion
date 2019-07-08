@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using UnityTankBattalion.Events;
 
 namespace UnityTankBattalion
 {
@@ -21,6 +22,11 @@ namespace UnityTankBattalion
         public Transform PlayerSpawnPoint;
 
         /// <summary>
+        /// The delay between finishing an old level and starting a new one
+        /// </summary>
+        [Header("Level Delays")] public float DelayBetweenLevels = 2f;
+
+        /// <summary>
         /// Delay before the player is respawned
         /// </summary>
         [Header("Respawn")] public float RespawnDelay = 2f;
@@ -35,6 +41,11 @@ namespace UnityTankBattalion
         /// </summary>
         [Header("Unity Events")] public UnityEvent OnLevelStarted;
 
+        /// <summary>
+        /// Called when our level counter is updated
+        /// </summary>
+        public IntEventListener.UnityIntEvent OnCurrentLevelCounterUpdated;
+
         #endregion
 
         #region Private Variables
@@ -44,12 +55,20 @@ namespace UnityTankBattalion
         /// </summary>
         private GameObject mActivePlayer;
 
+        /// <summary>
+        /// Our current level
+        /// </summary>
+        private int mCurrentLevel = 1;
+
         #endregion
 
         #region Unity Methods
 
         private void Start()
         {
+            // Set the current level to 1
+            mCurrentLevel = 1;
+
             // Initialise the player on start
             InstantiatePlayer();
 
@@ -88,6 +107,16 @@ namespace UnityTankBattalion
             StartCoroutine(DoRespawnPlayer());
         }
 
+        /// <summary>
+        /// Called when the current level is completed
+        /// </summary>
+        public void OnLevelCompleted()
+        {
+            Debug.Log("OnLevelCompleted");
+            
+            StartCoroutine(LevelCompletedRoutine());
+        }
+
         #endregion
 
         #region Private Variables
@@ -105,6 +134,9 @@ namespace UnityTankBattalion
         /// </summary>
         private void StartLevel()
         {
+            // Ensure our level counter is displayed properly
+            FireLevelCounterUpdatedEvent();
+
             // Fires the level start event
             OnLevelStarted?.Invoke();
         }
@@ -120,6 +152,31 @@ namespace UnityTankBattalion
 
             // Spawn the player
             SpawnPlayer();
+        }
+
+        /// <summary>
+        /// Updated our current level counter
+        /// </summary>
+        private void FireLevelCounterUpdatedEvent()
+        {
+            OnCurrentLevelCounterUpdated?.Invoke(mCurrentLevel);
+        }
+
+        /// <summary>
+        /// Routine called when the level has been completed
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator LevelCompletedRoutine()
+        {
+            // Increase the level count
+            mCurrentLevel++;
+            FireLevelCounterUpdatedEvent();
+
+            // Wait for our delay
+            yield return new WaitForSeconds(DelayBetweenLevels);
+
+            // Start the level
+            StartLevel();
         }
 
         #endregion

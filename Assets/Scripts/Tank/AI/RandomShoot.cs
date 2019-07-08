@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
 namespace UnityTankBattalion
 {
     [RequireComponent(typeof(TankWeapon))]
-    public class RandomShoot : MonoBehaviour
+    public class RandomShoot : MonoBehaviour, IPoolable
     {
         #region Public Variables
 
@@ -32,9 +27,19 @@ namespace UnityTankBattalion
         private float mTimer;
 
         /// <summary>
+        /// Whether we can shoot
+        /// </summary>
+        private bool mCanShoot;
+
+        /// <summary>
         /// Our weapon
         /// </summary>
         private TankWeapon mTankWeapon;
+
+        /// <summary>
+        /// Our health
+        /// </summary>
+        private Health mHealth;
 
         #endregion
 
@@ -46,10 +51,49 @@ namespace UnityTankBattalion
             Init();
         }
 
+        private void OnEnable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.AddListener(OnKilled);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.RemoveListener(OnKilled);
+            }
+        }
+
         private void Update()
         {
             // Update our timer
             UpdateTimer();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Called when we are spawned
+        /// </summary>
+        public void OnPoolSpawn()
+        {
+            // Set we can shoot
+            mCanShoot = true;
+
+            // Get our next timer value
+            DetermineNextFrequency();
+        }
+
+        /// <summary>
+        /// Called when we are de-spawned
+        /// </summary>
+        public void OnPoolUnSpawn()
+        {
         }
 
         #endregion
@@ -61,8 +105,9 @@ namespace UnityTankBattalion
         /// </summary>
         private void Init()
         {
-            // Grab our weapon
+            // Grab our components
             mTankWeapon = GetComponent<TankWeapon>();
+            mHealth = GetComponent<Health>();
 
             // If we do not have a weapon attached then return out
             if (!mTankWeapon)
@@ -70,6 +115,10 @@ namespace UnityTankBattalion
                 return;
             }
 
+            // Set we can shoot
+            mCanShoot = true;
+
+            // Get our next timer value
             DetermineNextFrequency();
         }
 
@@ -78,6 +127,12 @@ namespace UnityTankBattalion
         /// </summary>
         private void UpdateTimer()
         {
+            // If we cannot shoot return out
+            if (!mCanShoot)
+            {
+                return;
+            }
+
             // Update our timer
             mTimer -= Time.deltaTime;
 
@@ -115,6 +170,18 @@ namespace UnityTankBattalion
         private void DetermineNextFrequency()
         {
             mTimer = Random.Range(MinFrequency, MaxFrequency);
+        }
+
+        /// <summary>
+        /// Called when we have been killed
+        /// </summary>
+        private void OnKilled()
+        {
+            // Set we cannot shoot
+            mCanShoot = false;
+
+            // Reset our timer
+            mTimer = 0f;
         }
 
         #endregion

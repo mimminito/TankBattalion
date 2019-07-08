@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -24,6 +25,16 @@ namespace UnityTankBattalion
         /// Our cached transform 
         /// </summary>
         private Transform mTransform;
+
+        /// <summary>
+        /// Our health component
+        /// </summary>
+        private Health mHealth;
+
+        /// <summary>
+        /// Whether we can perform movement
+        /// </summary>
+        private bool mCanMove;
 
         /// <summary>
         /// Collidable tilemaps
@@ -58,6 +69,9 @@ namespace UnityTankBattalion
         {
             // Cache our transform for efficiency
             mTransform = transform;
+
+            // Grab our health component
+            mHealth = GetComponent<Health>();
         }
 
         private void Start()
@@ -66,8 +80,30 @@ namespace UnityTankBattalion
             Init();
         }
 
+        private void OnEnable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.AddListener(OnKilled);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.RemoveListener(OnKilled);
+            }
+        }
+
         private void FixedUpdate()
         {
+            // Check we can move
+            if (!mCanMove)
+            {
+                return;
+            }
+
             // Calculate the tanks movement
             CalculateMovement();
 
@@ -99,6 +135,9 @@ namespace UnityTankBattalion
         {
             // Set our collidable tilemaps to what our LevelManager stored
             mCollidableTilemaps = LevelManager.Instance.CollidableTilemaps;
+
+            // Set we can move
+            mCanMove = true;
         }
 
         /// <summary>
@@ -247,6 +286,15 @@ namespace UnityTankBattalion
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Called when we have been killed
+        /// </summary>
+        private void OnKilled()
+        {
+            // Disable movement if we have been killed
+            mCanMove = false;
         }
 
         #endregion

@@ -112,6 +112,9 @@ namespace UnityTankBattalion
 
             // Fire the give points event
             FireGivePointsEvent();
+            
+            // Fire our Unity Event when we have died
+            OnKilled?.Invoke();
 
             // Should we wait before destroying
             if (DeathDelay > 0f)
@@ -181,9 +184,6 @@ namespace UnityTankBattalion
         /// </summary>
         private void DestroyUs()
         {
-            // Fire our Unity Event when we have died
-            OnKilled?.Invoke();
-
             Pooling.SendToPool(gameObject);
         }
 
