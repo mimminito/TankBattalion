@@ -31,12 +31,6 @@ namespace UnityTankBattalion
 
             // Handle the shooting input
             HandleShootingInput();
-
-            // DEBUG
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                GetComponent<Health>().Kill();
-            }
         }
 
         #endregion

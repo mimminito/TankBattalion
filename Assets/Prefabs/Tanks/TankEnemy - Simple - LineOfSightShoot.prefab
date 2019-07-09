@@ -114,9 +114,9 @@ GameObject:
   - component: {fileID: 7402535247128473664}
   - component: {fileID: 2390900770602833278}
   - component: {fileID: 3976990436643383698}
-  - component: {fileID: 6858811052972667204}
+  - component: {fileID: 129528673464369763}
   m_Layer: 11
-  m_Name: TankEnemy
+  m_Name: TankEnemy - Simple - LineOfSightShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TankAnimator: {fileID: 6984146732221958484}
   MovementDuration: 0.25
-  MovementSpeed: 1
+  MovementDistance: 1
   TileCheckOffset: 0.5
   TankWidthInTiles: 2
 --- !u!114 &2390900770602833278
@@ -264,10 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef53e6a21979349e98693c29e552fc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialWeapon: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  BarrelEndTransform: {fileID: 0}
-  ProjectileSpeed: 0
+  InitialWeapon: {fileID: 2727422677181758831, guid: 1c758ad8739b54a47921f9b2cc03570d,
+    type: 3}
+  BarrelEndTransform: {fileID: 8405503277558099167}
 --- !u!114 &3976990436643383698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinFrequency: 3
   MaxFrequency: 5
---- !u!114 &6858811052972667204
+--- !u!114 &129528673464369763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,11 +290,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312025590716045049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016e27a4f2aa54e6abe366030ed4cdc9, type: 3}
+  m_Script: {fileID: 11500000, guid: fc47f4640d59f42958b9da1d9e65733f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinFrequency: 3
-  MaxFrequency: 5
+  FireRate: 1.5
+  ShootingLayer:
+    serializedVersion: 2
+    m_Bits: 4608
 --- !u!1 &8913141038855692252
 GameObject:
   m_ObjectHideFlags: 0

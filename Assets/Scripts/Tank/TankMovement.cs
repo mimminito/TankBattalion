@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 namespace UnityTankBattalion
 {
-    public class TankMovement : MonoBehaviour
+    public class TankMovement : MonoBehaviour, IPoolable
     {
         #region Public Variables
 
@@ -145,6 +145,22 @@ namespace UnityTankBattalion
         #endregion
 
         #region Public Variables
+
+        /// <summary>
+        /// Called when we are spawned
+        /// </summary>
+        public void OnPoolSpawn()
+        {
+            // Set we can move again
+            mCanMove = true;
+        }
+
+        /// <summary>
+        /// Called when we are de-spawned
+        /// </summary>
+        public void OnPoolUnSpawn()
+        {
+        }
 
         /// <summary>
         /// Set our input values

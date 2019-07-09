@@ -87,7 +87,7 @@ namespace UnityTankBattalion
         }
 
         /// <summary>
-        /// Called when this item is despawned
+        /// Called when this item is de-spawned
         /// </summary>
         public void OnPoolUnSpawn()
         {

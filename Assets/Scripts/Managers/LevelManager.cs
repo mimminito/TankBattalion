@@ -151,6 +151,7 @@ namespace UnityTankBattalion
             yield return new WaitForSeconds(RespawnDelay);
 
             // Spawn the player
+            InstantiatePlayer();
             SpawnPlayer();
         }
 
