@@ -124,6 +124,38 @@ namespace UnityTankBattalion
             mMovementDirection = inputVector;
         }
 
+        /// <summary>
+        /// Checks to see if we can move forward based on the tiles surrounding us
+        /// </summary>
+        /// <param name="currentCellPosition"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public bool CheckCanMoveInDirection(Vector2 currentCellPosition, Vector2 direction)
+        {
+            bool canMoveForward = true;
+
+            // Check all tiles based on our width
+            float currentPos = 0f - (TankWidthInTiles * 0.5f) + 0.5f;
+            for (int i = 0; i < TankWidthInTiles; i++)
+            {
+                // Calculate our target cell position
+                Vector2 targetCellPos = currentCellPosition + (TileCheckOffset + MovementSpeed) * direction;
+                targetCellPos += currentPos * Vector2.Perpendicular(direction);
+
+                // Check to see if we can move to this destination
+                if (!CheckCanMoveToSpace(targetCellPos))
+                {
+                    canMoveForward = false;
+                    break;
+                }
+
+                // Increase our next check position by one tile
+                currentPos += 1f;
+            }
+
+            return canMoveForward;
+        }
+
         #endregion
 
         #region Private Methods
@@ -157,29 +189,8 @@ namespace UnityTankBattalion
             // Set our current and target cell positions
             Vector2 currentCellPosition = mTransform.position;
 
-            bool canMoveToTarget = true;
-
-            // Check all tiles based on our width
-            float currentPos = 0f - (TankWidthInTiles * 0.5f) + 0.5f;
-            for (int i = 0; i < TankWidthInTiles; i++)
-            {
-                // Calculate our target cell position
-                Vector2 targetCellPos = currentCellPosition + (TileCheckOffset + MovementSpeed) * (Vector2) mTransform.up;
-                targetCellPos += currentPos * (Vector2) transform.right;
-
-                // Check to see if we can move to this destination
-                if (!CheckCanMoveToSpace(targetCellPos))
-                {
-                    canMoveToTarget = false;
-                    break;
-                }
-
-                // Increase our next check position by one tile
-                currentPos += 1f;
-            }
-
             // Check if we can move to this tile
-            if (!canMoveToTarget)
+            if (!CheckCanMoveInDirection(currentCellPosition, mTransform.up))
             {
                 // We cannot move here
                 return;

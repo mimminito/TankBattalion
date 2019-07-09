@@ -62,7 +62,7 @@ namespace UnityTankBattalion
         /// <summary>
         /// A list of all spawned enemy tanks
         /// </summary>
-        [SerializeField] private List<GameObject> mSpawnedEnemyTanks = new List<GameObject>();
+        private readonly List<GameObject> mSpawnedEnemyTanks = new List<GameObject>();
 
         /// <summary>
         /// This is an internal counter for how many tanks we have spawned.
