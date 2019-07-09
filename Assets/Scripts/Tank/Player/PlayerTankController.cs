@@ -11,7 +11,7 @@ namespace UnityTankBattalion
 
         // Components
         private TankMovement mTankMovement;
-        private TankWeapon mTankWeapon;
+        private TankWeaponHandler mTankWeaponHandlerHandler;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace UnityTankBattalion
         {
             // Garb our components
             mTankMovement = GetComponent<TankMovement>();
-            mTankWeapon = GetComponent<TankWeapon>();
+            mTankWeaponHandlerHandler = GetComponent<TankWeaponHandler>();
         }
 
         private void Update()
@@ -79,9 +79,9 @@ namespace UnityTankBattalion
         /// </summary>
         private void HandleShootingInput()
         {
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                mTankWeapon.FireWeapon();
+                mTankWeaponHandlerHandler.FireWeapon();
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace UnityTankBattalion
 {
-    [RequireComponent(typeof(TankWeapon))]
+    [RequireComponent(typeof(TankWeaponHandler))]
     public class RandomShoot : MonoBehaviour, IPoolable
     {
         #region Public Variables
@@ -34,7 +34,7 @@ namespace UnityTankBattalion
         /// <summary>
         /// Our weapon
         /// </summary>
-        private TankWeapon mTankWeapon;
+        private TankWeaponHandler mTankWeaponHandlerHandler;
 
         /// <summary>
         /// Our health
@@ -106,11 +106,11 @@ namespace UnityTankBattalion
         private void Init()
         {
             // Grab our components
-            mTankWeapon = GetComponent<TankWeapon>();
+            mTankWeaponHandlerHandler = GetComponent<TankWeaponHandler>();
             mHealth = GetComponent<Health>();
 
             // If we do not have a weapon attached then return out
-            if (!mTankWeapon)
+            if (!mTankWeaponHandlerHandler)
             {
                 return;
             }
@@ -154,13 +154,13 @@ namespace UnityTankBattalion
         private void FireWeapon()
         {
             // Check we have a weapon
-            if (!mTankWeapon)
+            if (!mTankWeaponHandlerHandler)
             {
                 return;
             }
 
             // Fire the weapon
-            mTankWeapon.FireWeapon();
+            mTankWeaponHandlerHandler.FireWeapon();
         }
 
         /// <summary>

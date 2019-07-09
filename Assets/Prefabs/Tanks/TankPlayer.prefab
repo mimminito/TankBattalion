@@ -180,13 +180,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 945963923562605938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d34e8bef5e4c2684c0cd605699f75d, type: 3}
+  m_Script: {fileID: 11500000, guid: ef53e6a21979349e98693c29e552fc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 6364090647265773742, guid: 2dd8eb4aeecfa4ec585c70a83c49dc8c,
+  InitialWeapon: {fileID: 2727422677181758831, guid: 54e8d06e7200749549b816973ae06087,
     type: 3}
   BarrelEndTransform: {fileID: 4551886563400350744}
-  ProjectileSpeed: 10
 --- !u!114 &345259284
 MonoBehaviour:
   m_ObjectHideFlags: 0
