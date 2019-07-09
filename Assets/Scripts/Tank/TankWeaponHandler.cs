@@ -52,6 +52,41 @@ namespace UnityTankBattalion
             mCurrentActiveWeapon.FireWeapon();
         }
 
+        public void SwapWeapon(GameObject newWeapon)
+        {
+            // Check the new weapon is valid
+            if (newWeapon == null)
+            {
+                Debug.Log("Cannot swap to a NULL weapon");
+                return;
+            }
+
+            // If we have a weapon already, destroy it
+            if (mCurrentActiveWeapon != null)
+            {
+                Pooling.SendToPool(mCurrentActiveWeapon.gameObject);
+                mCurrentActiveWeapon = null;
+            }
+
+            // Assign the new weapon
+            AssignWeapon(newWeapon);
+        }
+
+        /// <summary>
+        /// Restores the initial weapon
+        /// </summary>
+        public void RestoreInitialWeapon()
+        {
+            // Check the initial weapon was valid
+            if (InitialWeapon == null)
+            {
+                return;
+            }
+
+            // Swap to our initial weapon
+            SwapWeapon(InitialWeapon);
+        }
+
         #endregion
 
         #region Private Methods
@@ -64,10 +99,19 @@ namespace UnityTankBattalion
             // Check to see if we have an initial weapon
             if (InitialWeapon != null)
             {
-                mCurrentActiveWeapon = Pooling.GetFromPool(InitialWeapon, BarrelEndTransform.position, Quaternion.identity).GetComponent<BaseTankWeapon>();
-                mCurrentActiveWeapon.transform.SetParent(transform);
-                mCurrentActiveWeapon.transform.localScale = Vector3.one;
+                AssignWeapon(InitialWeapon);
             }
+        }
+
+        /// <summary>
+        /// Assigns a new weapon to use
+        /// </summary>
+        /// <param name="newWeapon"></param>
+        private void AssignWeapon(GameObject newWeapon)
+        {
+            mCurrentActiveWeapon = Pooling.GetFromPool(newWeapon, BarrelEndTransform.position, transform.rotation).GetComponent<BaseTankWeapon>();
+            mCurrentActiveWeapon.transform.SetParent(transform);
+            mCurrentActiveWeapon.transform.localScale = Vector3.one;
         }
 
         #endregion

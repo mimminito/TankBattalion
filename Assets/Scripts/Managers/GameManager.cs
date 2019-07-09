@@ -101,6 +101,9 @@ namespace UnityTankBattalion
             // Add a single life
             mCurrentLives++;
 
+            // Make sure we have valid lives
+            mCurrentLives = Mathf.Min(mCurrentLives, StartingLives);
+
             // Fire the player lives updated event
             FirePlayerLivesUpdatedEvent();
         }

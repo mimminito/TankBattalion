@@ -91,7 +91,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.25, g: 0.36842096, b: 1, a: 1}
+      key0: {r: 0.5896226, g: 0.6540797, b: 1, a: 1}
       key1: {r: 0.033018887, g: 0.18504132, b: 1, a: 1}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageToDeal: 10
   BeamRenderer: {fileID: 6390324982106120177}
-  LaserEnabledDuration: 0.5
+  LaserEnabledDuration: 0.25
   TerrainLayer:
     serializedVersion: 2
     m_Bits: 1024

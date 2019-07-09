@@ -10,11 +10,29 @@ namespace UnityTankBattalion
     {
         #region Public Variables
 
+        /// <summary>
+        /// Our animator
+        /// </summary>
         [Header("Setup")] public Animator TankAnimator;
 
+        /// <summary>
+        /// The duration for a single movement step
+        /// </summary>
         [Header("Movement")] public float MovementDuration = 0.25f;
-        public int MovementSpeed = 1;
+
+        /// <summary>
+        /// How much distance to move in a single move
+        /// </summary>
+        public int MovementDistance = 1;
+
+        /// <summary>
+        /// Offset for checking valid tiles
+        /// </summary>
         public float TileCheckOffset = 1.5f;
+
+        /// <summary>
+        /// Tanks width in tiles
+        /// </summary>
         public int TankWidthInTiles = 1;
 
         #endregion
@@ -61,6 +79,16 @@ namespace UnityTankBattalion
         /// </summary>
         private static readonly int Movement = Animator.StringToHash("Movement");
 
+        /// <summary>
+        /// Our current movement duration
+        /// </summary>
+        private float mCurrentMovementDuration;
+
+        /// <summary>
+        /// Routine for boosting our speed
+        /// </summary>
+        private IEnumerator mBoostedSpeedRoutine;
+
         #endregion
 
         #region Unity Methods
@@ -72,6 +100,9 @@ namespace UnityTankBattalion
 
             // Grab our health component
             mHealth = GetComponent<Health>();
+
+            // Setup our current movement duration
+            mCurrentMovementDuration = MovementDuration;
         }
 
         private void Start()
@@ -139,7 +170,7 @@ namespace UnityTankBattalion
             for (int i = 0; i < TankWidthInTiles; i++)
             {
                 // Calculate our target cell position
-                Vector2 targetCellPos = currentCellPosition + (TileCheckOffset + MovementSpeed) * direction;
+                Vector2 targetCellPos = currentCellPosition + (TileCheckOffset + MovementDistance) * direction;
                 targetCellPos += currentPos * Vector2.Perpendicular(direction);
 
                 // Check to see if we can move to this destination
@@ -154,6 +185,24 @@ namespace UnityTankBattalion
             }
 
             return canMoveForward;
+        }
+
+        /// <summary>
+        /// Boosts the speed for a specified duration
+        /// </summary>
+        /// <param name="boostedSpeed"></param>
+        /// <param name="duration"></param>
+        public void BoostSpeed(float boostedSpeed, float duration)
+        {
+            // If we cannot move, do not boost speed
+            if (!mCanMove)
+            {
+                return;
+            }
+
+            // Start the routine
+            mBoostedSpeedRoutine = BoostSpeedRoutine(boostedSpeed, duration);
+            StartCoroutine(mBoostedSpeedRoutine);
         }
 
         #endregion
@@ -197,7 +246,7 @@ namespace UnityTankBattalion
             }
 
             // Move to the target tile
-            StartCoroutine(MoveToTile(currentCellPosition + MovementSpeed * (Vector2) mTransform.up));
+            StartCoroutine(MoveToTile(currentCellPosition + MovementDistance * (Vector2) mTransform.up));
         }
 
         /// <summary>
@@ -214,7 +263,7 @@ namespace UnityTankBattalion
             float remainingDistanceSquared = ((Vector2) mTransform.position - targetPosition).sqrMagnitude;
 
             // Calculate the inverse of our movement time
-            float movementTimeInversed = 1 / MovementDuration;
+            float movementTimeInversed = 1 / mCurrentMovementDuration;
 
             // Whilst we still have some movement to do
             while (remainingDistanceSquared > float.Epsilon)
@@ -306,6 +355,35 @@ namespace UnityTankBattalion
         {
             // Disable movement if we have been killed
             mCanMove = false;
+
+            if (mBoostedSpeedRoutine != null)
+            {
+                StopCoroutine(mBoostedSpeedRoutine);
+            }
+        }
+
+        /// <summary>
+        /// Boosts our speed for the specified duration
+        /// </summary>
+        /// <param name="boostedSpeed"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
+        private IEnumerator BoostSpeedRoutine(float boostedSpeed, float duration)
+        {
+            // Save our current speed
+            float previousSpeed = mCurrentMovementDuration;
+
+            // Set our boosted speed
+            mCurrentMovementDuration = boostedSpeed;
+
+            // Wait for our duration
+            yield return new WaitForSeconds(duration);
+
+            // Restore our speed
+            mCurrentMovementDuration = previousSpeed;
+
+            // Reset our routine
+            mBoostedSpeedRoutine = null;
         }
 
         #endregion
