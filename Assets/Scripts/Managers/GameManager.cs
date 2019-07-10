@@ -34,6 +34,11 @@ namespace UnityTankBattalion
         /// </summary>
         public UnityEvent OnGameOver;
 
+        /// <summary>
+        /// Fired when pause game has been requested
+        /// </summary>
+        public UnityEvent OnPauseGameRequested;
+
         #endregion
 
         #region Private Variables
@@ -63,6 +68,15 @@ namespace UnityTankBattalion
             // Update our lives and points
             FirePlayerLivesUpdatedEvent();
             FirePlayerPointsUpdatedEvent();
+        }
+
+        private void Update()
+        {
+            // Check if we are being asked to pause the game
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnPauseGameRequested?.Invoke();
+            }
         }
 
         #endregion
