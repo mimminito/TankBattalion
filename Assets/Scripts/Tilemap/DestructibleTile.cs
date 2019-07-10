@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace UnityTankBattalion
@@ -106,17 +105,21 @@ namespace UnityTankBattalion
 
         #region Scriptable Object
 
-        [MenuItem("Assets/Custom Tiles/Destructible Tile")]
+#if UNITY_EDITOR
+
+        [UnityEditor.MenuItem("Assets/Custom Tiles/Destructible Tile")]
         static void CreateTile()
         {
-            string path = EditorUtility.SaveFilePanelInProject("Save New Tile", "DestructibleTile", "Asset", "Save Tile");
+            string path = UnityEditor.EditorUtility.SaveFilePanelInProject("Save New Tile", "DestructibleTile", "Asset", "Save Tile");
             if (string.IsNullOrEmpty(path))
             {
                 return;
             }
 
-            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DestructibleTile>(), path);
+            UnityEditor.AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DestructibleTile>(), path);
         }
+
+#endif
 
         #endregion
     }

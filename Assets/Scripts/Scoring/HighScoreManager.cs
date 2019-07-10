@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -88,7 +87,8 @@ namespace UnityTankBattalion.Scoring
         /// </summary>
         /// <param name="score"></param>
         /// <param name="playerName"></param>
-        public void AddHighScore(int score, string playerName = "Player 1")
+        /// <param name="serializeData"></param>
+        public void AddHighScore(int score, string playerName = "Player 1", bool serializeData = true)
         {
             // Check to see if this is a new high score
             if (!IsNewHighScore(score))
@@ -106,8 +106,12 @@ namespace UnityTankBattalion.Scoring
             // Fire an event that a new high score has been added
             OnHighScoreAdded?.Invoke();
 
-            // Persist the high scores
-            SerializeHighScores();
+
+            if (serializeData)
+            {
+                // Persist the high scores
+                SerializeHighScores();
+            }
         }
 
         /// <summary>
@@ -117,6 +121,11 @@ namespace UnityTankBattalion.Scoring
         /// <returns></returns>
         public bool IsNewHighScore(int score)
         {
+            if (score == 0)
+            {
+                return false;
+            }
+
             bool result = true;
             foreach (HighScore highScore in HighScores)
             {
@@ -182,8 +191,10 @@ namespace UnityTankBattalion.Scoring
 
         #region Editor Class
 
-        [CustomEditor(typeof(HighScoreManager))]
-        public class HighScoreManagerInspector : Editor
+#if UNITY_EDITOR
+
+        [UnityEditor.CustomEditor(typeof(HighScoreManager))]
+        public class HighScoreManagerInspector : UnityEditor.Editor
         {
             #region Private Methods
 
@@ -191,7 +202,7 @@ namespace UnityTankBattalion.Scoring
             {
                 base.OnInspectorGUI();
 
-                EditorGUILayout.Space();
+                UnityEditor.EditorGUILayout.Space();
 
                 if (GUILayout.Button("Clear High Scores"))
                 {
@@ -205,6 +216,8 @@ namespace UnityTankBattalion.Scoring
 
             #endregion
         }
+
+#endif
 
         #endregion
     }

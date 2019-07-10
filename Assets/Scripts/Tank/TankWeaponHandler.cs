@@ -17,10 +17,14 @@ namespace UnityTankBattalion
 
         #region Private Variables
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
-        /// The current active weapon
+        /// Our current weapon
         /// </summary>
-        private BaseTankWeapon mCurrentActiveWeapon;
+        public BaseTankWeapon CurrentWeapon { get; private set; }
 
         #endregion
 
@@ -42,13 +46,13 @@ namespace UnityTankBattalion
         public void FireWeapon()
         {
             // Check if we have a weapon
-            if (!mCurrentActiveWeapon)
+            if (!CurrentWeapon)
             {
                 return;
             }
 
             // Fire the weapon
-            mCurrentActiveWeapon.FireWeapon();
+            CurrentWeapon.FireWeapon();
         }
 
         public void SwapWeapon(GameObject newWeapon)
@@ -61,10 +65,10 @@ namespace UnityTankBattalion
             }
 
             // If we have a weapon already, destroy it
-            if (mCurrentActiveWeapon != null)
+            if (CurrentWeapon != null)
             {
-                Pooling.SendToPool(mCurrentActiveWeapon.gameObject);
-                mCurrentActiveWeapon = null;
+                Pooling.SendToPool(CurrentWeapon.gameObject);
+                CurrentWeapon = null;
             }
 
             // Assign the new weapon
@@ -108,9 +112,9 @@ namespace UnityTankBattalion
         /// <param name="newWeapon"></param>
         private void AssignWeapon(GameObject newWeapon)
         {
-            mCurrentActiveWeapon = Pooling.GetFromPool(newWeapon, BarrelEndTransform.position, transform.rotation).GetComponent<BaseTankWeapon>();
-            mCurrentActiveWeapon.transform.SetParent(transform);
-            mCurrentActiveWeapon.transform.localScale = Vector3.one;
+            CurrentWeapon = Pooling.GetFromPool(newWeapon, BarrelEndTransform.position, transform.rotation).GetComponent<BaseTankWeapon>();
+            CurrentWeapon.transform.SetParent(transform);
+            CurrentWeapon.transform.localScale = Vector3.one;
         }
 
         #endregion
