@@ -42,9 +42,6 @@ namespace UnityTankBattalion
             // Check to see if we have a new high score
             if (HighScoreManager.Instance.IsNewHighScore(newScore))
             {
-                // Add the new high score
-                HighScoreManager.Instance.AddHighScore(newScore);
-
                 // Update the counter
                 mText.text = newScore.ToString();
             }
