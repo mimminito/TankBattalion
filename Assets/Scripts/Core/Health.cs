@@ -60,10 +60,14 @@ namespace UnityTankBattalion
         /// </summary>
         private Collider2D mCollider2D;
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Our current health
         /// </summary>
-        private int mCurrentHealth;
+        public int CurrentHealth { get; private set; }
 
         #endregion
 
@@ -107,12 +111,15 @@ namespace UnityTankBattalion
             // Should we turn off collisions
             if (DeathDisableCollisions)
             {
-                mCollider2D.enabled = false;
+                if (mCollider2D)
+                {
+                    mCollider2D.enabled = false;
+                }
             }
 
             // Fire the give points event
             FireGivePointsEvent();
-            
+
             // Fire our Unity Event when we have died
             OnKilled?.Invoke();
 
@@ -134,19 +141,19 @@ namespace UnityTankBattalion
         public void Damage(int damage)
         {
             // Check if we are already dead
-            if (mCurrentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 return;
             }
 
             // Subtract the damage from our health
-            mCurrentHealth -= damage;
+            CurrentHealth -= damage;
 
             // Check if we are dead now
-            if (mCurrentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 // Make sure our health is 0
-                mCurrentHealth = 0;
+                CurrentHealth = 0;
 
                 // Kill
                 Kill();
@@ -159,7 +166,7 @@ namespace UnityTankBattalion
         /// <param name="healthToAdd"></param>
         public void AddHealth(int healthToAdd)
         {
-            mCurrentHealth = Mathf.Min(mCurrentHealth + healthToAdd, MaxHealth);
+            CurrentHealth = Mathf.Min(CurrentHealth + healthToAdd, MaxHealth);
         }
 
         #endregion
@@ -173,10 +180,13 @@ namespace UnityTankBattalion
         {
             // Grab our collider
             mCollider2D = GetComponent<Collider2D>();
-            mCollider2D.enabled = true;
+            if (mCollider2D)
+            {
+                mCollider2D.enabled = true;
+            }
 
             // Set our starting health
-            mCurrentHealth = MaxHealth;
+            CurrentHealth = MaxHealth;
         }
 
         /// <summary>
