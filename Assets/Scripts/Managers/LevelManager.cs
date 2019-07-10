@@ -112,14 +112,20 @@ namespace UnityTankBattalion
 
             // Setup the level
             SetupLevel();
-
-            // Start the level
-            StartLevel();
         }
 
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Start the game
+        /// </summary>
+        public void StartGame()
+        {
+            // Start the level
+            StartLevel();
+        }
 
         /// <summary>
         /// Respawns the player
