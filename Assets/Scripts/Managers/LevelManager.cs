@@ -12,6 +12,16 @@ namespace UnityTankBattalion
         #region Public Variables
 
         /// <summary>
+        /// Level data
+        /// </summary>
+        [Header("Level Data")] public LevelsDataHolder LevelsData;
+
+        /// <summary>
+        /// The parent for the tilemap to be spawned under
+        /// </summary>
+        public Transform TilemapParent;
+
+        /// <summary>
         /// The players Tank prefab
         /// </summary>
         [Header("Player")] public GameObject PlayerPrefab;
@@ -32,11 +42,6 @@ namespace UnityTankBattalion
         [Header("Respawn")] public float RespawnDelay = 2f;
 
         /// <summary>
-        /// The tilemaps which are used for collision
-        /// </summary>
-        [Header("Tilemaps")] public List<Tilemap> CollidableTilemaps;
-
-        /// <summary>
         /// An event which is fired when the level is started
         /// </summary>
         [Header("Unity Events")] public UnityEvent OnLevelStarted;
@@ -45,6 +50,11 @@ namespace UnityTankBattalion
         /// Called when our level counter is updated
         /// </summary>
         public IntEventListener.UnityIntEvent OnCurrentLevelCounterUpdated;
+
+        /// <summary>
+        /// An event called when all levels have been completed
+        /// </summary>
+        public UnityEvent OnAllLevelsComplete;
 
         #endregion
 
@@ -60,12 +70,37 @@ namespace UnityTankBattalion
         /// </summary>
         private int mCurrentLevel = 1;
 
+        /// <summary>
+        /// Our current tilemap
+        /// </summary>
+        private GameObject mCurrentTilemapGO;
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// The current level info
+        /// </summary>
+        public LevelsDataHolder.LevelInfo CurrentLevelInfo
+        {
+            get { return LevelsData.Levels[mCurrentLevel - 1]; }
+        }
+
+        /// <summary>
+        /// The tilemaps which are used for collision
+        /// </summary>
+        public List<Tilemap> CollidableTilemaps { get; private set; }
+
         #endregion
 
         #region Unity Methods
 
         private void Start()
         {
+            // Initialise our list
+            CollidableTilemaps = new List<Tilemap>();
+
             // Set the current level to 1
             mCurrentLevel = 1;
 
@@ -75,6 +110,9 @@ namespace UnityTankBattalion
             // Spawn the player
             SpawnPlayer();
 
+            // Setup the level
+            SetupLevel();
+
             // Start the level
             StartLevel();
         }
@@ -82,22 +120,6 @@ namespace UnityTankBattalion
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        /// Spawns a player at the given spawn point
-        /// </summary>
-        public void SpawnPlayer()
-        {
-            if (mActivePlayer == null)
-            {
-                Debug.LogError("Cannot spawn player, no active player instantiated.");
-                return;
-            }
-
-            // Spawn the player at the specified location
-            mActivePlayer.transform.position = PlayerSpawnPoint.position;
-            mActivePlayer.SetActive(true);
-        }
 
         /// <summary>
         /// Respawns the player
@@ -112,8 +134,6 @@ namespace UnityTankBattalion
         /// </summary>
         public void OnLevelCompleted()
         {
-            Debug.Log("OnLevelCompleted");
-            
             StartCoroutine(LevelCompletedRoutine());
         }
 
@@ -127,6 +147,47 @@ namespace UnityTankBattalion
         private void InstantiatePlayer()
         {
             mActivePlayer = Pooling.GetFromPool(PlayerPrefab, PlayerSpawnPoint.position, Quaternion.identity);
+        }
+
+        /// <summary>
+        /// Spawns a player at the given spawn point
+        /// </summary>
+        private void SpawnPlayer()
+        {
+            if (mActivePlayer == null)
+            {
+                Debug.LogError("Cannot spawn player, no active player instantiated.");
+                return;
+            }
+
+            // Spawn the player at the specified location
+            mActivePlayer.transform.position = PlayerSpawnPoint.position;
+            mActivePlayer.SetActive(true);
+        }
+
+        /// <summary>
+        /// Initialises our level with its tilemap
+        /// </summary>
+        private void SetupLevel()
+        {
+            // Get the current level info
+            LevelsDataHolder.LevelInfo currentLevelInfo = LevelsData.Levels[mCurrentLevel - 1];
+
+            // Destroy our current tilemap if we have one
+            if (mCurrentTilemapGO)
+            {
+                Destroy(mCurrentTilemapGO);
+            }
+
+            // Spawn the new tilemap
+            mCurrentTilemapGO = Pooling.GetFromPool(currentLevelInfo.LevelTilemap.gameObject, Vector3.zero, Quaternion.identity);
+            mCurrentTilemapGO.transform.SetParent(TilemapParent);
+            mCurrentTilemapGO.transform.position = Vector3.zero;
+            mCurrentTilemapGO.transform.localScale = Vector3.one;
+
+            // Setup our collidable tilemaps
+            CollidableTilemaps.Clear();
+            CollidableTilemaps.Add(mCurrentTilemapGO.GetComponentInChildren<Tilemap>());
         }
 
         /// <summary>
@@ -169,12 +230,26 @@ namespace UnityTankBattalion
         /// <returns></returns>
         private IEnumerator LevelCompletedRoutine()
         {
+            // First check if we have completed all the levels
+            if (mCurrentLevel == LevelsData.Levels.Count)
+            {
+                // Fire an event that all levels are complete
+                OnAllLevelsComplete?.Invoke();
+                yield break;
+            }
+
+            // Wait for our delay
+            yield return new WaitForSeconds(DelayBetweenLevels);
+
             // Increase the level count
             mCurrentLevel++;
             FireLevelCounterUpdatedEvent();
 
-            // Wait for our delay
-            yield return new WaitForSeconds(DelayBetweenLevels);
+            // Respawn the player
+            SpawnPlayer();
+
+            // Setup the level
+            SetupLevel();
 
             // Start the level
             StartLevel();

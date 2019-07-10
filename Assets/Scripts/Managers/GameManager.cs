@@ -121,6 +121,14 @@ namespace UnityTankBattalion
             FirePlayerPointsUpdatedEvent();
         }
 
+        /// <summary>
+        /// Called when all levels are completed
+        /// </summary>
+        public void OnAllLevelsComplete()
+        {
+            Debug.Log("Player has won!");
+        }
+
         #endregion
 
         #region Private Methods

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a6f132e11b1436cb6cb4f8aad83237, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  Levels:
+  - LevelTilemap: {fileID: 3208175397493191448, guid: 670e8caa711964013a43a3aba23a4c84,
+      type: 3}
+    EnemyPrefab: {fileID: 5312025590716045049, guid: 2c0c8f15f812641bc8312f6068d4b8ac,
+      type: 3}
+  - LevelTilemap: {fileID: 6344765874420347308, guid: 1b560621626ec4cdd8f788209623c640,
+      type: 3}
+    EnemyPrefab: {fileID: 5312025590716045049, guid: e342ac8a9a2904a0887c9fd1167deb0e,
+      type: 3}
+  - LevelTilemap: {fileID: 6344765874420347308, guid: 32d999976512e409da736530e45888c4,
+      type: 3}
+    EnemyPrefab: {fileID: 5312025590716045049, guid: 2c0c8f15f812641bc8312f6068d4b8ac,
+      type: 3}
+  - LevelTilemap: {fileID: 6344765874420347308, guid: 7cd8c440065134abcb342d38a5827afd,
+      type: 3}
+    EnemyPrefab: {fileID: 5312025590716045049, guid: e342ac8a9a2904a0887c9fd1167deb0e,
+      type: 3}

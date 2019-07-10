@@ -153,6 +153,16 @@ namespace UnityTankBattalion
         {
             // Set we can move again
             mCanMove = true;
+
+            // Ensure we are not boosting our speed
+            if (mBoostedSpeedRoutine != null)
+            {
+                StopCoroutine(mBoostedSpeedRoutine);
+                mBoostedSpeedRoutine = null;
+            }
+
+            // Set our speed back to default
+            mCurrentMovementDuration = MovementDuration;
         }
 
         /// <summary>
