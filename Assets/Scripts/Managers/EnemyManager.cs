@@ -147,9 +147,12 @@ namespace UnityTankBattalion
         /// </summary>
         private void StartSpawningEnemies()
         {
+            // Set we can spawn enemies
+            mCanSpawnEnemies = true;
+
             // Ensure we have the right enemy prefab for this level
             EnemyTankPrefab = LevelManager.Instance.CurrentLevelInfo.EnemyPrefab;
-            
+
             // Start the spawning routine
             mSpawnEnemiesRoutine = SpawnEnemies();
             StartCoroutine(mSpawnEnemiesRoutine);

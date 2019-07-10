@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TankAnimator: {fileID: 3529273032136478765}
-  MovementDuration: 0.25
-  MovementSpeed: 1
+  MovementDuration: 0.15
+  MovementDistance: 1
   TileCheckOffset: 0.5
   TankWidthInTiles: 2
 --- !u!114 &411224607012280176
