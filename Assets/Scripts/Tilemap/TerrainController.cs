@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace UnityTankBattalion
@@ -9,6 +7,9 @@ namespace UnityTankBattalion
     {
         #region Public Variables
 
+        /// <summary>
+        /// Starting health for destructible tiles
+        /// </summary>
         public int DestructibleTileStartingHealth = 30;
 
         #endregion
@@ -26,6 +27,7 @@ namespace UnityTankBattalion
 
         private void Awake()
         {
+            // Initialise
             Init();
         }
 
@@ -39,6 +41,9 @@ namespace UnityTankBattalion
 
         #region Private Methods
 
+        /// <summary>
+        /// Initialise
+        /// </summary>
         private void Init()
         {
             mTerrainTilemap = GetComponent<Tilemap>();

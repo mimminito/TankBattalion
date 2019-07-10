@@ -54,7 +54,8 @@ namespace UnityTankBattalion
 
         private void Update()
         {
-            HandleBackButton();
+            // Check to see if we are trying to go back to the Main Menu
+            CheckForBack();
         }
 
         #endregion
@@ -64,7 +65,7 @@ namespace UnityTankBattalion
         /// <summary>
         /// Handles the back button actions via keyboard input
         /// </summary>
-        private void HandleBackButton()
+        private void CheckForBack()
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
             {

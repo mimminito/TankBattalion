@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +10,14 @@ namespace UnityTankBattalion
 
         private void Start()
         {
+            // Check we have a button
             Button button = GetComponent<Button>();
             if (!button)
             {
                 return;
             }
 
+            // Add a listener for when we have clicked the button
             button.onClick.AddListener(QuitApp);
         }
 
@@ -25,8 +25,12 @@ namespace UnityTankBattalion
 
         #region Private Methods
 
+        /// <summary>
+        /// Quit the app
+        /// </summary>
         private void QuitApp()
         {
+            // If we are in the editor, and playing, stop playing
             if (Application.isEditor && Application.isPlaying)
             {
 #if UNITY_EDITOR
@@ -35,6 +39,7 @@ namespace UnityTankBattalion
             }
             else
             {
+                // Quit the app
                 Application.Quit();
             }
         }

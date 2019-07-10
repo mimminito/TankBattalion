@@ -23,6 +23,7 @@ namespace UnityTankBattalion.Events
 
         private void OnEnable()
         {
+            // Check we have an event
             if (TheEvent == null)
             {
                 return;
@@ -34,6 +35,7 @@ namespace UnityTankBattalion.Events
 
         private void OnDisable()
         {
+            // Check we have an event
             if (TheEvent == null)
             {
                 return;

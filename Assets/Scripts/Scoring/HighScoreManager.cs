@@ -10,6 +10,9 @@ namespace UnityTankBattalion.Scoring
     {
         #region Private Classes
 
+        /// <summary>
+        /// Container for high scores
+        /// </summary>
         [Serializable]
         private class HighScoresContainer
         {

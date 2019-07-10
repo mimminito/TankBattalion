@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace UnityTankBattalion
 {
@@ -32,6 +30,9 @@ namespace UnityTankBattalion
 
         #region Public Variables
 
+        /// <summary>
+        /// List of levels
+        /// </summary>
         public List<LevelInfo> Levels;
 
         #endregion
