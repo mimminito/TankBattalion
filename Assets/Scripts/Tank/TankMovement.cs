@@ -172,6 +172,15 @@ namespace UnityTankBattalion
         }
 
         /// <summary>
+        /// Set if we can move
+        /// </summary>
+        /// <param name="canMove"></param>
+        public void SetCanMove(bool canMove)
+        {
+            mCanMove = canMove;
+        }
+
+        /// <summary>
         /// Set our input values
         /// </summary>
         /// <param name="inputVector"></param>
