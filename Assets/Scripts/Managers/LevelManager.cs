@@ -238,7 +238,7 @@ namespace UnityTankBattalion
         {
             // First check if we have completed all the levels
             if (mCurrentLevel == LevelsData.Levels.Count)
-            {
+            {   
                 // Fire an event that all levels are complete
                 OnAllLevelsComplete?.Invoke();
                 yield break;

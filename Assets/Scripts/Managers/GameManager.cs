@@ -39,6 +39,11 @@ namespace UnityTankBattalion
         /// </summary>
         public UnityEvent OnPauseGameRequested;
 
+        /// <summary>
+        /// Fired when we have a new high score to add
+        /// </summary>
+        public IntEventListener.UnityIntEvent OnNewHighScore;
+
         #endregion
 
         #region Private Variables
@@ -140,7 +145,8 @@ namespace UnityTankBattalion
         /// </summary>
         public void OnAllLevelsComplete()
         {
-            Debug.Log("Player has won!");
+            // Check if we have a new high score
+            CheckForNewHighScore();
         }
 
         #endregion
@@ -168,7 +174,7 @@ namespace UnityTankBattalion
             OnGameOver?.Invoke();
 
             // Update the high score if needed
-            HighScoreManager.Instance.AddHighScore(mCurrentPoints);
+            CheckForNewHighScore();
         }
 
         /// <summary>
@@ -187,6 +193,17 @@ namespace UnityTankBattalion
         {
             // Fire an event that the players points have been updated
             OnPlayerPointsUpdated?.Invoke(mCurrentPoints);
+        }
+
+        /// <summary>
+        /// Checks to see if we have a new high score 
+        /// </summary>
+        private void CheckForNewHighScore()
+        {
+            if (HighScoreManager.Instance.IsNewHighScore(mCurrentPoints))
+            {
+                OnNewHighScore?.Invoke(mCurrentPoints);
+            }
         }
 
         #endregion
