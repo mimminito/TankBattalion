@@ -233,7 +233,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, Assembly-CSharp,
+    m_TypeName: UnityTankBattalion.Events.IntEventListener+UnityIntEvent, ScriptsAssembly,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &7402535247128473664
 MonoBehaviour:
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016e27a4f2aa54e6abe366030ed4cdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinFrequency: 3
-  MaxFrequency: 5
+  MinFrequency: 1
+  MaxFrequency: 2
 --- !u!1 &8913141038855692252
 GameObject:
   m_ObjectHideFlags: 0

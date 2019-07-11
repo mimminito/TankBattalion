@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UnityTankBattalion
 {
-    public class TankWeaponHandler : MonoBehaviour
+    public class TankWeaponHandler : MonoBehaviour, IPoolable
     {
         #region Public Methods
 
@@ -16,6 +16,16 @@ namespace UnityTankBattalion
         #endregion
 
         #region Private Variables
+
+        /// <summary>
+        /// Our health component
+        /// </summary>
+        private Health mHealth;
+
+        /// <summary>
+        /// Whether we can fire
+        /// </summary>
+        private bool mCanFire;
 
         #endregion
 
@@ -36,15 +46,55 @@ namespace UnityTankBattalion
             Init();
         }
 
+        private void OnEnable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.AddListener(OnKilled);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (mHealth)
+            {
+                mHealth.OnKilled.RemoveListener(OnKilled);
+            }
+        }
+
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Called when we are spawned
+        /// </summary>
+        public void OnPoolSpawn()
+        {
+            // Set we can fire
+            mCanFire = true;
+        }
+
+        /// <summary>
+        /// Called when we are de-spawned
+        /// </summary>
+        public void OnPoolUnSpawn()
+        {
+            // Set we cannot fire
+            mCanFire = false;
+        }
 
         /// <summary>
         /// Fires the weapon
         /// </summary>
         public void FireWeapon()
         {
+            // Check we can fire
+            if (!mCanFire)
+            {
+                return;
+            }
+
             // Check if we have a weapon
             if (!CurrentWeapon)
             {
@@ -104,6 +154,12 @@ namespace UnityTankBattalion
             {
                 AssignWeapon(InitialWeapon);
             }
+
+            // Grab our health component
+            mHealth = GetComponent<Health>();
+
+            // Set we can fire
+            mCanFire = true;
         }
 
         /// <summary>
@@ -115,6 +171,15 @@ namespace UnityTankBattalion
             CurrentWeapon = Pooling.GetFromPool(newWeapon, BarrelEndTransform.position, transform.rotation).GetComponent<BaseTankWeapon>();
             CurrentWeapon.transform.SetParent(transform);
             CurrentWeapon.transform.localScale = Vector3.one;
+        }
+
+        /// <summary>
+        /// Called when we are killed
+        /// </summary>
+        private void OnKilled()
+        {
+            // Set we cannot fire
+            mCanFire = false;
         }
 
         #endregion

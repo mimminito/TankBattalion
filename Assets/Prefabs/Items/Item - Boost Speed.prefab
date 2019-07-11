@@ -74,7 +74,7 @@ MonoBehaviour:
   ValidPickableLayers:
     serializedVersion: 2
     m_Bits: 512
-  BoostedSpeedValue: 0.8
+  BoostedSpeedValue: 0.1
   BoostedSpeedDuration: 10
 --- !u!1 &3182996122876868594
 GameObject:

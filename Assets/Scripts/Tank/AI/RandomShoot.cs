@@ -32,7 +32,7 @@ namespace UnityTankBattalion
         private bool mCanShoot;
 
         /// <summary>
-        /// Our weapon
+        /// Our weapon handler
         /// </summary>
         private TankWeaponHandler mTankWeaponHandlerHandler;
 

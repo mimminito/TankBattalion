@@ -163,6 +163,9 @@ namespace UnityTankBattalion
 
             // Set the players starting points
             mCurrentPoints = 0;
+
+            // Start the game paused
+            Time.timeScale = 0f;
         }
 
         /// <summary>
